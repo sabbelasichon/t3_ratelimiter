@@ -76,7 +76,7 @@ final class RatelimiterConfigurationResolverTest extends TestCase
         self::assertSame([
             'limiters' => [
                 'a_limiter' => [
-                    'lock_factory' => 'lock.factory',
+                    'lock_factory' => null,
                     'cache_pool' => 'cache.rate_limiter',
                     'storage_service' => null,
                     'policy' => 'no_limit',
