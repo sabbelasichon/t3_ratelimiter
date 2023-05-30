@@ -34,6 +34,10 @@ final class RatelimiterCompilerPass implements CompilerPassInterface
     {
         $config = $this->configurationCollector->collect();
 
+        if (! isset($config['limiters'])) {
+            return;
+        }
+
         foreach ($config['limiters'] as $name => $limiterConfig) {
             // default configuration (when used by other DI extensions)
             $limiterConfig += [

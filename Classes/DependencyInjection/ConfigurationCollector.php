@@ -17,9 +17,12 @@ final class ConfigurationCollector
 {
     private PackageManager $packageManager;
 
-    public function __construct(PackageManager $packageManager)
+    private RatelimiterConfigurationResolver $configurationResolver;
+
+    public function __construct(PackageManager $packageManager, RatelimiterConfigurationResolver $configurationResolver)
     {
         $this->packageManager = $packageManager;
+        $this->configurationResolver = $configurationResolver;
     }
 
     public function collect(): array
@@ -35,6 +38,6 @@ final class ConfigurationCollector
             }
         }
 
-        return $config->getArrayCopy();
+        return $this->configurationResolver->resolve($config->getArrayCopy());
     }
 }

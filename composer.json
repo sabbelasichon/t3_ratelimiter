@@ -19,7 +19,8 @@
     "php": "^7.4 || ^8.0",
     "typo3/cms-core": "^10.4 || ^11.5 || ^12.1",
     "symfony/rate-limiter": "^5.0 || 6.2",
-    "ssch/typo3-psr-cache-adapter": "^1.1"
+    "ssch/typo3-psr-cache-adapter": "^1.1",
+    "symfony/options-resolver": "^5.4 || ^6.0"
   },
   "require-dev": {
     "symplify/easy-coding-standard": "^11.1",
