@@ -16,9 +16,9 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 final class RatelimiterTest extends FunctionalTestCase
 {
-    protected $initializeDatabase = false;
+    protected bool $initializeDatabase = false;
 
-    protected $testExtensionsToLoad = [
+    protected array $testExtensionsToLoad = [
         'typo3conf/ext/typo3_psr_cache_adapter',
         'typo3conf/ext/t3_ratelimiter',
         'typo3conf/ext/t3_ratelimiter/Tests/Functional/Fixtures/Extensions/t3_ratelimiter_test',
