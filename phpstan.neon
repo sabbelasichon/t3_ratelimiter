@@ -1,0 +1,16 @@
+includes:
+    - phpstan-baseline.neon
+parameters:
+  editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+  level: 8
+  treatPhpDocTypesAsCertain: false
+  checkMissingIterableValueType: false
+  checkGenericClassInNonGenericObjectType: false
+  reportUnmatchedIgnoredErrors: false
+  paths:
+    - Classes
+    - Tests
+    - Configuration
+  excludePaths:
+    analyse:
+      -  Tests/Functional/Fixtures/Extensions/*
