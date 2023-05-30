@@ -1,3 +1,3 @@
-# TYPO3 Symfony Serializer Adapter
-Integrates Symfony serializer into TYPO3
-[https://symfony.com/doc/current/components/serializer.html](https://symfony.com/doc/current/components/serializer.html)
+# TYPO3 Symfony Rate Limiter Adapter
+Integrates Symfony Rate Limiter into TYPO3
+[https://symfony.com/doc/current/rate_limiter.html](https://symfony.com/doc/current/rate_limiter.html)
