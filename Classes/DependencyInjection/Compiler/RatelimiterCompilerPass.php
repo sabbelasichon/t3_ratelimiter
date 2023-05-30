@@ -39,12 +39,6 @@ final class RatelimiterCompilerPass implements CompilerPassInterface
         }
 
         foreach ($config['limiters'] as $name => $limiterConfig) {
-            // default configuration (when used by other DI extensions)
-            $limiterConfig += [
-                'lock_factory' => 'lock.factory',
-                'cache_pool' => 'cache.rate_limiter',
-            ];
-
             $limiter = $container->setDefinition($limiterId = 'limiter.' . $name, new ChildDefinition('limiter'));
 
             if ($limiterConfig['lock_factory'] !== null) {

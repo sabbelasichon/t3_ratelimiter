@@ -1,0 +1,16 @@
+{
+  "name": "ssch/t3-ratelimiter-test",
+  "type": "typo3-cms-extension",
+  "description": "Test extensions for t3_ratelimiter",
+  "license": "GPL-2.0+",
+  "require": {
+    "ssch/t3-ratelimiter": "*"
+  },
+  "autoload": {
+    "Ssch\\T3RatelimiterTest\\": "Classes"
+  },
+  "replace": {
+    "t3_ratelimiter_test": "self.version",
+    "typo3-ter/t3-ratelimiter-test": "self.version"
+  }
+}

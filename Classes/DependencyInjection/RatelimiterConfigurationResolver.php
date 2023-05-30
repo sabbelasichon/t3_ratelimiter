@@ -38,7 +38,7 @@ final class RatelimiterConfigurationResolver
                 ->setPrototype(true);
 
             $limitersResolver
-                ->setDefault('lock_factory', 'lock.factory')
+                ->setDefault('lock_factory', null)
                 ->setInfo(
                     'lock_factory',
                     'The service ID of the lock factory used by this limiter (or null to disable locking)'
@@ -65,11 +65,11 @@ final class RatelimiterConfigurationResolver
                 ['fixed_window', 'token_bucket', 'sliding_window', 'no_limit']
             );
 
-            $limitersResolver->setDefault('limit', null)
+            $limitersResolver->setDefined('limit')
                 ->setAllowedTypes('limit', 'int')
                 ->setInfo('limit', 'The maximum allowed hits in a fixed interval or burst');
 
-            $limitersResolver->setDefault('interval', null)
+            $limitersResolver->setDefined('interval')
                 ->setInfo(
                     'interval',
                     'Configures the fixed interval if "policy" is set to "fixed_window" or "sliding_window". The value must be a number followed by "second", "minute", "hour", "day", "week" or "month" (or their plural equivalent).'
@@ -77,10 +77,9 @@ final class RatelimiterConfigurationResolver
 
             $limitersResolver->setDefault('rate', function (OptionsResolver $rateResolver) {
                 $rateResolver
-                    ->setDefaults([
-                        'interval' => null,
-                        'amount' => 1,
-                    ]);
+                    ->setDefined('interval')
+                    ->setDefault('amount', 1);
+
                 $rateResolver->setInfo(
                     'interval',
                     'Configures the rate interval. The value must be a number followed by "second", "minute", "hour", "day", "week" or "month" (or their plural equivalent).'
@@ -93,13 +92,16 @@ final class RatelimiterConfigurationResolver
     private function validatePolicyConfiguration(array $resolvedConfiguration): void
     {
         foreach ($resolvedConfiguration['limiters'] as $limiter) {
-            if ($limiter['policy'] !== 'no_limit') {
+            if ($limiter['policy'] === 'no_limit') {
                 continue;
             }
 
             if (! isset($limiter['limit'])) {
                 throw new InvalidOptionsException(
-                    'A limit must be provided when using a policy different than "no_limit".'
+                    sprintf(
+                        'A limit must be provided when using a policy different than "no_limit". Policy "%s" given.',
+                        $limiter['policy']
+                    )
                 );
             }
         }

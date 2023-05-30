@@ -48,7 +48,7 @@ return static function (ContainerConfigurator $containerConfigurator, ContainerB
 
     $services->set('cache.rate_limiter', CacheItemPoolInterface::class)
         ->factory([service(Psr6Factory::class), 'create'])
-        ->args(['typo3_psr_cache_adapter_test']);
+        ->args(['t3_ratelimiter']);
 
     $services->set('limiter', RateLimiterFactory::class)
         ->abstract()
